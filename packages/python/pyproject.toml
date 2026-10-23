@@ -1,0 +1,54 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "ag-evalforge"
+version = "0.5.0"
+description = "Eval runner for LLM applications"
+authors = ["Adnan Ghribi <aghribi@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/aghribi/ag-evalforge"
+repository = "https://github.com/aghribi/ag-evalforge"
+packages = [{ include = "ag_evalforge" }]
+
+[tool.poetry.scripts]
+ag-evalforge = "ag_evalforge.cli:main"
+
+[tool.poetry.dependencies]
+python  = "^3.10"
+pydantic = "^2.0"
+click    = "^8.0"
+
+[tool.poetry.extras]
+openai     = ["openai"]
+anthropic  = ["anthropic"]
+semantic   = ["sentence-transformers"]
+all        = ["openai", "anthropic", "sentence-transformers"]
+
+[tool.poetry.dependencies.openai]
+version  = "^1.0"
+optional = true
+
+[tool.poetry.dependencies.anthropic]
+version  = "^0.25"
+optional = true
+
+[tool.poetry.dependencies."sentence-transformers"]
+version  = "^3.0"
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+pytest            = "^8.0"
+pytest-asyncio    = "^0.23"
+black             = "^24.0"
+ruff              = "^0.4"
+openai            = "^1.0"
+anthropic         = "^0.25"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
