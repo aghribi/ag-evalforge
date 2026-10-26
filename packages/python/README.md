@@ -36,9 +36,9 @@ Command line: `ag-evalforge run -d dataset.jsonl -s exact -o outputs.jsonl` and 
 
 The TypeScript package `ag-evalforge` is a port of the core classes.
 
-## Hosted API
+## Self-hosted API
 
-`HostedScorer` runs the scoring in the hosted API, so no LLM provider key is needed locally. API keys are issued at https://ai.artifact-network.org. The default endpoint is `https://ai-api.artifact-network.org`; pass a different base URL to use your own deployment.
+`HostedScorer` runs the scoring in a self-run [ag-platform](https://github.com/aghribi/ag-platform) deployment, so no LLM provider key is needed locally: `HostedScorer(api_key=..., base_url=...)` (TypeScript: `baseUrl`). There is no default endpoint.
 
 ## Development
 

@@ -7,7 +7,7 @@ export interface HostedScorerOptions {
   threshold?: number;
   criteria?: string;
   pattern?: string;
-  baseUrl?: string;
+  baseUrl: string;
   timeout?: number;
 }
 
@@ -27,7 +27,7 @@ export class HostedScorer implements Scorer {
     this.threshold = options.threshold ?? 0.7;
     this.criteria  = options.criteria;
     this.pattern   = options.pattern;
-    this.baseUrl   = (options.baseUrl ?? "https://ai-api.artifact-network.org").replace(/\/$/, "");
+    this.baseUrl   = options.baseUrl.replace(/\/$/, "");
     this.timeout   = options.timeout ?? 30_000;
   }
 

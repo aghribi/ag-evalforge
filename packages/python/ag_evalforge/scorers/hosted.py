@@ -9,9 +9,6 @@ from .base import Scorer
 class QuotaExceededError(Exception):
     """Raised when the hosted API returns HTTP 429 (monthly quota exceeded)."""
 
-_DEFAULT_BASE = "https://ai-api.artifact-network.org"
-
-
 class HostedScorer(Scorer):
     """
     Score eval cases via the hosted API.
@@ -23,7 +20,8 @@ class HostedScorer(Scorer):
 
         from ag_evalforge import run_eval, EvalCase, HostedScorer
 
-        scorer = HostedScorer(api_key="ag_live_...", scorer="llm_judge",
+        scorer = HostedScorer(api_key="ag_live_...", base_url="https://your-ag-platform",
+                              scorer="llm_judge",
                               criteria="Is the answer accurate and professional?")
         report = run_eval(cases=[...], scorer=scorer)
     """
@@ -33,11 +31,11 @@ class HostedScorer(Scorer):
     def __init__(
         self,
         api_key:   str,
+        base_url:  str,
         scorer:    str = "llm_judge",
         threshold: float = 0.7,
         criteria:  Optional[str] = None,
         pattern:   Optional[str] = None,
-        base_url:  str = _DEFAULT_BASE,
         timeout:   float = 30.0,
     ):
         self.api_key   = api_key
